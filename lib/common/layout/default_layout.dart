@@ -1,34 +1,39 @@
 import 'package:flutter/material.dart';
 
 class DefaultLayout extends StatelessWidget {
+  final Color? accentColor;
   final Widget child;
-  final Widget? bottomNavigationBar;
-  final Color? backgroundColor;
   final String? title;
+  final Widget? bottomNavigationBar;
+  final Widget? floatingActionButton;
 
   const DefaultLayout({
     required this.child,
-    this.bottomNavigationBar,
-    this.backgroundColor,
+    this.accentColor,
     this.title,
-    super.key,
-  });
+    this.bottomNavigationBar,
+    this.floatingActionButton,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor ?? Colors.white,
+      // backgroundColor: accentColor ?? Colors.white,
       appBar: renderAppBar(),
       body: child,
-      bottomNavigationBar: bottomNavigationBar
+      bottomNavigationBar: bottomNavigationBar,
+      floatingActionButton: floatingActionButton,
     );
   }
 
-  AppBar? renderAppBar() {
-    if (title == null) {
+  AppBar? renderAppBar(){
+    if(title == null){
       return null;
-    } else {
+    }else{
       return AppBar(
+        // backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           title!,
           style: TextStyle(
@@ -37,8 +42,6 @@ class DefaultLayout extends StatelessWidget {
           ),
         ),
         foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
-        elevation: 0,
       );
     }
   }
